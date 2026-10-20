@@ -1,0 +1,15 @@
+{
+  "name": "iuris",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/web",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=@iuris/web",
+    "build": "npm run build --workspace=@iuris/web",
+    "start": "npm run start --workspace=@iuris/web",
+    "lint": "npm run lint --workspace=@iuris/web"
+  }
+}

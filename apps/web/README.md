@@ -16,6 +16,21 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Creating the first admin
+
+Public sign-up is disabled. After configuring `DATABASE_URL` in `apps/web/.env`
+and applying the database schema with `npm run db:push --workspace=@iuris/web`,
+run this command from the repository root:
+
+```powershell
+npm run admin:create-first --workspace=@iuris/web
+```
+
+Enter the admin name and email when prompted, then enter a password of 12-128
+characters. Password input is hidden. The command creates a verified admin
+account through Better Auth and refuses to run if an admin already exists.
+Then sign in at [http://localhost:7000/login](http://localhost:7000/login).
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

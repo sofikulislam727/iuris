@@ -27,19 +27,17 @@ const ITEMS = [
   { href: "/evidence", label: "Evidence", icon: Archive },
   { href: "/analytics", label: "Analytics", icon: ChartColumn },
   { href: "/reports", label: "Reports", icon: FileText },
-  { href: "/activity", label: "Activity", icon: History },
+  { href: "/activity", label: "Activity", icon: History, adminOnly: true },
   { href: "/settings", label: "Settings", icon: Settings },
 ] as const;
 
-export function DashboardNav() {
+export function DashboardNav({ isAdmin }: { isAdmin: boolean }) {
   const pathname = usePathname();
+  const items = ITEMS.filter((i) => !("adminOnly" in i) || isAdmin);
 
   return (
-    <nav
-      aria-label="Main"
-      className="flex gap-1 overflow-x-auto md:flex-col md:overflow-visible"
-    >
-      {ITEMS.map(({ href, label, icon: Icon }) => {
+    <nav aria-label="Main" className="flex gap-1 overflow-x-auto md:flex-col md:overflow-visible">
+      {items.map(({ href, label, icon: Icon }) => {
         const active = pathname === href || pathname.startsWith(`${href}/`);
         return (
           <Link
@@ -48,9 +46,9 @@ export function DashboardNav() {
             aria-current={active ? "page" : undefined}
             className={cn(
               "flex shrink-0 items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors",
-              "hover:bg-accent hover:text-accent-foreground",
-              "focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
-              active && "bg-accent text-accent-foreground",
+              "text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+              "focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:outline-none",
+              active && "bg-sidebar-accent text-sidebar-accent-foreground",
             )}
           >
             <Icon className="size-4" aria-hidden="true" />

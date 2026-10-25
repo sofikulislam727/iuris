@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ShieldCheck } from "lucide-react";
+import Image from "next/image";
 import {
   Card,
   CardContent,
@@ -24,7 +24,13 @@ export function AuthShell({
     <main className="flex min-h-svh items-center justify-center bg-muted/40 p-4">
       <div className="w-full max-w-sm space-y-6">
         <div className="flex items-center justify-center gap-2">
-          <ShieldCheck className="size-6 text-primary" aria-hidden="true" />
+          <Image
+            src="/logo.png"
+            alt=""
+            width={24}
+            height={24}
+            className="size-6 object-contain"
+          />
           <span className="text-lg font-semibold tracking-tight">IURIS</span>
         </div>
 
